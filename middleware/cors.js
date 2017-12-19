@@ -11,10 +11,10 @@
  * 设置跨域
  *
  * @param {Object} options cors配置
- * @param {Array|String} options.allowMethods 允许的方法
- * @param {Array|String} options.exposeHeaders 允许暴露的响应首部
- * @param {Array|String} options.allowHeaders 允许的头部
- * @param {Array|String} options.maxAge 用于设置preflight缓存时间
+ * @param {Array|string} options.allowMethods 允许的方法
+ * @param {Array|string} options.exposeHeaders 允许暴露的响应首部
+ * @param {Array|string} options.allowHeaders 允许的头部
+ * @param {Array|string} options.maxAge 用于设置preflight缓存时间
  * @param {Boolean} options.credentials 是否允许cookie
  */
 module.exports = (options, app) => {
@@ -82,7 +82,6 @@ module.exports = (options, app) => {
       }
 
       await next()
-      return
     } else {
       // Preflight Request
       if (!ctx.get('Access-Control-Request-Method')) {

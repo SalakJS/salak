@@ -1,3 +1,12 @@
+'use strict'
+
+/**
+ * jsonp中间件
+ *
+ * 创 建 者：wengeek <wenwei897684475@gmail.com>
+ * 创建时间：2017-12-19
+ */
+
 const jsonp = require('jsonp-body')
 
 module.exports = (options, app) => {

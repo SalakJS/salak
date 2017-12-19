@@ -1,3 +1,5 @@
+'use strict'
+
 const assert = require('assert')
 const Salak = require('..')
 
@@ -9,5 +11,6 @@ describe('Salak', () => {
     assert(Salak.Service)
     assert(Salak.BaseContext)
     assert(Salak.Joi)
+    assert(Salak.makeOutputSchema)
   })
 })

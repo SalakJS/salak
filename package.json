@@ -4,9 +4,10 @@
   "description": "Build better frameworks and apps with nodejs & koa.",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js lib/* util/* example/* test/*",
+    "lint": "eslint .",
     "test": "jest",
-    "test-cov": "npm run test -- --coverage"
+    "test-cov": "npm run test -- --coverage",
+    "prepublish": "npm run lint && npm run test"
   },
   "author": "wengeek <wenwei897684475@gmail.com>",
   "repository": "SalakJS/salak",
