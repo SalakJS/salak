@@ -3,7 +3,13 @@ module.exports = {
     'blog'
   ],
   swagger: {
-    enable: false
+    spec: {
+      info: {
+        title: 'Blog api',
+        description: 'All apis for blog',
+        version: '1.0.0'
+      }
+    }
   },
   logger: {
     injectConsole: false,

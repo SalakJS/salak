@@ -29,5 +29,17 @@ describe('Test app', () => {
           done()
         })
     })
+    it('request /api-docs', (done) => {
+      request(app.callback())
+        .get('/api-docs')
+        .expect(200)
+        .end((err, res) => {
+          if (err) {
+            return done(err)
+          }
+
+          done()
+        })
+    })
   })
 })

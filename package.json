@@ -1,13 +1,12 @@
 {
   "name": "salak",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Build better frameworks and apps with nodejs & koa.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "test-cov": "npm run test -- --coverage",
-    "prepublish": "npm run lint && npm run test"
+    "test-cov": "npm run test -- --coverage"
   },
   "author": "wengeek <wenwei897684475@gmail.com>",
   "repository": "SalakJS/salak",
@@ -18,8 +17,8 @@
     "koa-bodyparser": "^4.2.0",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.3",
-    "salak-core": "^1.0.0",
-    "salak-swagger": "^1.0.1"
+    "salak-core": "^1.0.1",
+    "salak-swagger": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "^4.13.0",
