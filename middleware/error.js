@@ -29,7 +29,7 @@ module.exports = (options, app) => {
   return async (ctx, next) => {
     try {
       await next()
-      if (ctx.response.status === 400 && !ctx.response.body) {
+      if (ctx.response.status === 404 && !ctx.response.body) {
         ctx.throw(404)
       }
     } catch (err) {

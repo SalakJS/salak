@@ -26,11 +26,11 @@ class Post extends Controller {
   }
 
   actionShow (id) {
-    this.sendJson(id, 'ok', { user: 'wuwenwei' })
+    this.sendJson(id, 'ok', { user: 'wengeek' })
   }
 
   actionIndex () {
-    this.sendJson('12', 'ok', { user: 'wuwenwei' })
+    this.sendJson('12', 'ok', { user: 'wengeek' })
   }
 }
 
