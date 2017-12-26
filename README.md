@@ -26,6 +26,10 @@ web应用框架，基于koa 2.0
 - ✔︎ model, service自动装载
 - ✔︎ 内置丰富的插件，如error, jsonp等
 
+## 文档
+
+[https://salakjs.github.io/docs](https://salakjs.github.io/docs)
+
 ## 安装
 
 ```
@@ -55,8 +59,6 @@ npm install --save salak
 │       └── post.js
 └── index.js                - 程序入口
 ```
-
-@Todo 更详细文档参考
 
 ## License
 

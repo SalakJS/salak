@@ -9,6 +9,7 @@
 
 module.exports = {
   buildInMiddlewares: {
+    output: require('../middleware/output'),
     bodyparser: require('koa-bodyparser'),
     error: require('../middleware/error'),
     swagger: require('../middleware/swagger'),
@@ -18,12 +19,13 @@ module.exports = {
     static: require('../middleware/static')
   },
   buildInMiddlewaresOrder: [
+    'output',
     'static',
     'bodyparser',
     'cors',
     'jsonp',
-    'view',
     'error',
+    'view',
     'swagger'
   ]
 }
