@@ -7,8 +7,8 @@
  * 创建时间：2017-12-19
  */
 
-const Boom = require('boom')
 const path = require('path')
+const createError = require('http-errors')
 const defaultOutput = require('../lib/output')
 const defaultErrorTemplate = path.join(__dirname, '..', 'view', 'error.ejs')
 
@@ -36,7 +36,7 @@ module.exports = (options, app) => {
       app.logger.app.error(err)
 
       if (!err) {
-        err = Boom.badImplementation() // eslint-disable-line
+        err = new createError.InternalServerError() // eslint-disable-line
       }
 
       const code = err.status || 500
@@ -50,9 +50,7 @@ module.exports = (options, app) => {
       switch (acceptType) {
         case 'json':
           let body
-          if (err.isBoom) {
-            body = output(code, err.message)
-          } else if (err.isJoi) {
+          if (err.isJoi) {
             if (err.type === 'RequestValidationError') { // 请求参数出错
               body = output(code, 'request validate fail.', undefined, err.details)
             } else if (err.type === 'ResponseValidationError') { // 响应体出错
