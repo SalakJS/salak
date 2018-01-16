@@ -27,7 +27,7 @@ const defaultSwaggerOptions = {
     </style>
   </head>
   <body>
-    <redoc spec-url='/api-json'></redoc>
+    <redoc spec-url='./api-json'></redoc>
     <script src="https://rebilly.github.io/ReDoc/releases/latest/redoc.min.js"> </script>
   </body>
 </html>
