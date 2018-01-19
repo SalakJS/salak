@@ -19,11 +19,13 @@ const defaultErrorTemplate = path.join(__dirname, '..', 'view', 'error.ejs')
  * @param {number|string} options.status 设置为auto即根据http状态码来设置
  * @param {string} options.type 输出数据格式
  * @param {string} options.template 输出错误视图模板地址
+ * @param {string} options.logIgnoreNotFound 日志是否不记录404，默认为false，表示不忽略
  * @return {Function}
  */
 module.exports = (options, app) => {
   options = Object.assign({}, {
-    status: 'auto' // 根据错误码设置http状态
+    status: 'auto', // 根据错误码设置http状态
+    logIgnoreNotFound: false
   }, options)
 
   return async (ctx, next) => {
@@ -33,7 +35,9 @@ module.exports = (options, app) => {
         ctx.throw(404)
       }
     } catch (err) {
-      app.logger.app.error(err)
+      if (!(options.logIgnoreNotFound && err && err.status === 404)) {
+        app.logger.app.error(err)
+      }
 
       if (!err) {
         err = new createError.InternalServerError() // eslint-disable-line
