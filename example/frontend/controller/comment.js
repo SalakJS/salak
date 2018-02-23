@@ -30,6 +30,8 @@ class Post extends Controller {
   }
 
   actionIndex () {
+    this.logger.app.info('test')
+    console.log('why not', this.app.env)
     this.sendJson('12', 'ok', { user: 'wengeek' })
   }
 }

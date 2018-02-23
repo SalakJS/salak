@@ -36,7 +36,7 @@ module.exports = (options, app) => {
       }
     } catch (err) {
       if (!(options.logIgnoreNotFound && err && err.status === 404)) {
-        app.logger.app.error(err)
+        app.logger.error(err)
       }
 
       if (!err) {
