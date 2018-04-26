@@ -15,6 +15,10 @@ const defaults = {
 }
 
 module.exports = (options, app) => {
+  if (app.output) {
+    return
+  }
+
   options = Object.assign({}, defaults, options)
 
   app.output = (code, msg, data, details) => {
