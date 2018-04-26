@@ -41,7 +41,14 @@ const defaultSwaggerOptions = {
  * @param {string} options.html 文档渲染样式
  */
 module.exports = (options, app) => {
-  options = Object.assign({}, defaultSwaggerOptions, options)
+  options = Object.assign({
+    spec: {
+      info: {
+        title: 'salak',
+        version: '0.0.1'
+      }
+    }
+  }, defaultSwaggerOptions, options)
 
   const json = generateSwaggerSpec(app.routesDefinitions, options.spec)
   app.router.get(options.json, async (ctx, next) => {
