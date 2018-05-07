@@ -4,4 +4,6 @@ const app = new Salak({
   baseDir: __dirname
 })
 
-app.listen(3000)
+app.on('ready', () => {
+  app.listen(3000)
+})

@@ -9,8 +9,10 @@
 
 const SalakCore = require('salak-core')
 const middleware = require('./config/middleware')
+const HttpClient = require('./lib/httpClient')
 
 const HANDLER_ERROR = Symbol('salak#error')
+const HTTP_CLIENT = Symbol('salak#httpClient')
 
 // 重置默认中间件以及加载顺序
 SalakCore[SalakCore.defaults] = {
@@ -21,6 +23,12 @@ SalakCore[SalakCore.defaults] = {
 class Salak extends SalakCore {
   constructor (options) {
     super(options)
+
+    // 注入curl
+    this[HTTP_CLIENT] = new HttpClient(this.rootConfig.httpClient)
+    this.curl = SalakCore.BaseContext.prototype.curl = (url, options) => {
+      return this[HTTP_CLIENT].request(url, options)
+    }
 
     // 容错处理
     // bind _unhandledRejectionHandler

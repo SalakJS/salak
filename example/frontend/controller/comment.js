@@ -1,7 +1,7 @@
 const Controller = require('../../..').RestController
 const Joi = require('../../..').Joi
 
-class Post extends Controller {
+class Comment extends Controller {
   static behaviors () {
     return {
       rules: {
@@ -29,11 +29,12 @@ class Post extends Controller {
     this.sendJson(id, 'ok', { user: 'wengeek' })
   }
 
-  actionIndex () {
+  async actionIndex () {
     this.logger.app.info('test')
-    console.log('why not', this.app.env)
-    this.sendJson('12', 'ok', { user: 'wengeek' })
+    this.sendJson('12', 'ok', {
+      user: 'wengeek'
+    })
   }
 }
 
-module.exports = Post
+module.exports = Comment

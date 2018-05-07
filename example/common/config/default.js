@@ -2,6 +2,12 @@ module.exports = {
   bootstraps: [
     'frontend'
   ],
+  routes: {
+    defaultRoute: 'frontend/comment'
+  },
+  httpClient: {
+    timeout: 1000
+  },
   swagger: {
     // enable: false,
     spec: {
