@@ -38,7 +38,7 @@ class Salak extends SalakCore {
   }
 
   [HANDLER_ERROR] (err) {
-    this.logger.app.error(err)
+    this.logger.error(err)
   }
 }
 
