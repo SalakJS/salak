@@ -45,6 +45,4 @@ class Salak extends SalakCore {
 Salak.Controller = require('./lib/controller')
 Salak.RestController = require('./lib/restController')
 
-Salak.makeOutputSchema = require('./lib/output').makeOutputSchema
-
 module.exports = Salak

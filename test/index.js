@@ -11,6 +11,5 @@ describe('Salak', () => {
     assert(Salak.Service)
     assert(Salak.BaseContext)
     assert(Salak.Joi)
-    assert(Salak.makeOutputSchema)
   })
 })

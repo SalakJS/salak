@@ -1,4 +1,4 @@
-const { Controller, Joi, makeOutputSchema } = require('../../../../..')
+const { Controller, Joi } = require('../../../../..')
 
 class Post extends Controller {
   constructor (...args) {
@@ -20,9 +20,13 @@ class Post extends Controller {
             },
             responses: {
               200: {
-                body: makeOutputSchema({
-                  username: Joi.string().required()
-                })
+                body: {
+                  code: Joi.number().required(),
+                  msg: Joi.string().required(),
+                  data: Joi.object({
+                    username: Joi.string().required()
+                  })
+                }
               }
             }
           }
