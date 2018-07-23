@@ -1,0 +1,51 @@
+{
+  "name": "salak",
+  "version": "2.0.0-beta.3",
+  "description": "A framework base on koa.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint && jest --coverage",
+    "test-cov": "jest --coverage"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "extend": "^3.0.1",
+    "fs-extra": "^6.0.1",
+    "globby": "^8.0.1",
+    "is-type-of": "^1.2.0",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compose": "^4.1.0",
+    "koa-static": "^5.0.0",
+    "salak-logger": "^1.0.1",
+    "salak-router": "^1.0.6",
+    "salak-schedule": "^2.0.0-beta",
+    "salak-swagger": "^1.0.12",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "jest": "^23.2.0",
+    "supertest": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salakjs/salak.git"
+  },
+  "keywords": [
+    "salak",
+    "koa"
+  ],
+  "author": "wengeek <wenwei897684475@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/salakjs/salak/issues"
+  },
+  "homepage": "https://github.com/salakjs/salak#readme"
+}
