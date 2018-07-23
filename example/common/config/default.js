@@ -11,6 +11,10 @@ module.exports = (app) => {
     'test'
   ]
 
+  config.schedule = {
+    enable: false
+  }
+
   config.routes = {
     defaultRoute: 'api/user',
     replaceIndex: false,
