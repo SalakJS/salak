@@ -57,7 +57,8 @@ module.exports = (options, app) => {
     if (typeof options.origin === 'function') {
       origin = options.origin(ctx)
       if (!origin) {
-        return next()
+        await next()
+        return
       }
     } else {
       origin = options.origin || requestOrigin
