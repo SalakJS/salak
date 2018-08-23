@@ -1,6 +1,6 @@
 {
   "name": "salak",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Build better frameworks and apps with nodejs & koa.",
   "main": "index.js",
   "scripts": {
