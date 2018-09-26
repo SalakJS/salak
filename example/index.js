@@ -3,6 +3,7 @@ const Salak = require('..')
 const app = new Salak({
   baseDir: __dirname,
   opts: {
+    app: 'src',
     root: 'common'
   }
 })

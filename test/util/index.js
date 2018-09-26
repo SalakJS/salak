@@ -88,4 +88,13 @@ describe('test/util/index.js', () => {
       })
     })
   })
+
+  describe('test isPlainObject', () => {
+    it('should return true', () => {
+      expect(util.isPlainObject({})).toBe(true)
+    })
+    it('should return false', () => {
+      expect(util.isPlainObject([])).toBe(false)
+    })
+  })
 })

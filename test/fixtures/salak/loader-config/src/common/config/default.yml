@@ -1,0 +1,7 @@
+test: salak
+bootstraps:
+  - user
+languages:
+  - NodeJS
+  - Java
+  - PHP

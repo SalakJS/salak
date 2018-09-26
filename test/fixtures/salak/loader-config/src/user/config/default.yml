@@ -1,0 +1,3 @@
+test: user
+tools:
+  eslint: eslint
