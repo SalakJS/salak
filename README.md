@@ -1,23 +1,16 @@
-# Salak
+<h3 style="text-align:center;font-weight: 300;" align="center">
+  <img src="https://img10.360buyimg.com/uba/jfs/t1/5886/37/9397/36866/5bac77adE0c759743/c1be1bebd2af6d3e.png" width="160px">
+</h3>
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![David deps][david-image]][david-url]
-[![NPM download][download-image]][download-url]
+<p align="center">
+  <a href="https://npmjs.org/package/salak"><img src="https://img.shields.io/npm/v/salak.svg?style=flat-square" alt="NPM version"></a>
+  <a href="https://travis-ci.org/SalakJS/salak"><img src="https://img.shields.io/travis/SalakJS/salak.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://codecov.io/github/salakjs/salak?branch=master"><img src="https://img.shields.io/codecov/c/github/salakjs/salak.svg?style=flat-square" alt="Coverage Status"></a>
+  <a href="https://npmjs.org/package/salak"><img src="https://img.shields.io/npm/dm/salak.svg?style=flat-square" alt="Downloads"></a>
+  <a href="https://github.com/SalakJS/salak"><img src="https://img.shields.io/github/license/SalakJS/salak.svg?style=flat-square" alt="License"></a>
+</p>
 
-[npm-image]: https://img.shields.io/npm/v/salak.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/salak
-[travis-image]: https://img.shields.io/travis/SalakJS/salak.svg?style=flat-square
-[travis-url]: https://travis-ci.org/SalakJS/salak
-[coveralls-image]: https://img.shields.io/codecov/c/github/salakjs/salak.svg?style=flat-square
-[coveralls-url]: https://codecov.io/github/salakjs/salak?branch=master
-[david-image]: https://img.shields.io/david/SalakJS/salak.svg?style=flat-square
-[david-url]: https://david-dm.org/SalakJS/salak
-[download-image]: https://img.shields.io/npm/dm/salak.svg?style=flat-square
-[download-url]: https://npmjs.org/package/salak
-
-A better framework for easily building better apps, which bases on Koa.
+Salak is a web framework for nodejs to make web applications and APIs more ealisy, which bases on Koa.
 
 ## Installation
 
@@ -35,7 +28,26 @@ Node.js > 7.6.0 required.
 - ✔︎ Plugin system
 - ✔︎ Easy extends
 
+## Docs
+
+- [Website](https://salakjs.github.io/docs/)
+
 ## Getting Started
+
+Follow the commands listed below.
+
+```bash
+$ npm install -g salak-cli
+$ salak init simple salak-demo
+$ cd salak-demo
+$ npm install
+$ npm start
+$ open http://127.0.0.1:3000
+```
+
+## Acknowledgement
+
+[AOTU.IO（JD Multi-terminal Development Department）](https://aotu.io)
 
 ## License
 
