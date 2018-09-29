@@ -166,6 +166,7 @@ describe('test/salak.js', () => {
 
       const res = await request(server).get('/').expect(200)
       expect(res.body.data).toBe('ok')
+      server.close()
     })
   })
 
@@ -177,6 +178,7 @@ describe('test/salak.js', () => {
 
       const res = await request(server).get('/').expect(200)
       expect(res.body.data).toBe('ok')
+      server.close()
     })
   })
 
