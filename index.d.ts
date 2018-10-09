@@ -9,7 +9,7 @@ declare class Salak extends KoaApplication {
   baseDir: string
   appDir: string
   runtime: string
-  loader: object
+  loader: any
   logger: Salak.logger
 
   callback (): Promise<Server> | any
@@ -19,7 +19,7 @@ declare class Salak extends KoaApplication {
   setConfig (name: string, value: any, module?: string): void
   service (name: string, module?: string, ...args: any[]): any
 
-  curl (url: string, options?: Salak.CURL_OPTIONS): Promise<object>
+  curl (url: string, options?: Salak.CURL_OPTIONS): Promise<Salak.CURL_RESPONSE>
   run (port?: number): Promise<Server>
 
   close (): Promise<any>
@@ -37,18 +37,27 @@ declare namespace Salak {
     error (msg: any, ...args: any[]): void
   }
 
+  type PlainObject <T = any> = { [prop: string]: T }
+
   interface CURL_OPTIONS {
     method?: string
     timeout?: number
-    body?: object
-    query?: object
-    headers?: object
+    body?: PlainObject
+    query?: PlainObject
+    headers?: PlainObject
     contentType?: string
     dataType?: string
     retry?: number
     redirects?: number
     stream?: Stream
     reqStream?: Stream
+  }
+
+  interface CURL_RESPONSE {
+    status: number
+    data: any
+    err: any
+    headers: any
   }
 
   export class Base {
@@ -58,15 +67,15 @@ declare namespace Salak {
     app: Salak
     root: string
     logger: logger
-    helper: object
-    curl (url: string, options?: CURL_OPTIONS): Promise<object>
+    helper: PlainObject
+    curl (url: string, options?: CURL_OPTIONS): Promise<CURL_RESPONSE>
     config (key: string, module?: string): any
     service (name: string, module?: string, ...args: any[]): any
     throw (...args: any[]): void
   }
 
   export interface Context extends KoaApplication.Context {
-    curl (url: string, options?: CURL_OPTIONS): Promise<object>
+    curl (url: string, options?: CURL_OPTIONS): Promise<CURL_RESPONSE>
   }
 
   class Middleware {
@@ -76,9 +85,9 @@ declare namespace Salak {
 
   export class Controller extends Base {
     ctx: Context
-    header: object
+    header: PlainObject
     userAgent: string
-    query: object
+    query: PlainObject
     status: number
     body: any
     type: string
@@ -89,7 +98,7 @@ declare namespace Salak {
   }
 
   export class Behavior extends Base {
-    Joi: object
+    Joi: PlainObject
     behavior (name: string, module?: string): Behavior
   }
 

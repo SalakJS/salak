@@ -1,6 +1,6 @@
 {
   "name": "salak",
-  "version": "2.0.0-beta.19",
+  "version": "2.0.0-beta.20",
   "description": "A framework base on koa.",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "test-cov": "jest --coverage"
   },
   "dependencies": {
+    "@types/koa": "^2.0.46",
     "debug": "^4.0.1",
     "extend": "^3.0.2",
     "fs-extra": "^7.0.0",
@@ -28,8 +29,6 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "@types/koa": "^2.0.46",
-    "@types/node": "^10.11.5",
     "eslint": "^5.6.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
