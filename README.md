@@ -10,12 +10,12 @@
   <a href="https://github.com/SalakJS/salak"><img src="https://img.shields.io/github/license/SalakJS/salak.svg?style=flat-square" alt="License"></a>
 </p>
 
-Salak is a web framework for nodejs to make web applications and APIs more ealisy, which bases on Koa.
+Salak is a web framework for nodejs to make web applications and APIs more easily, which bases on [Koa](https://github.com/koajs/koa).
 
 ## Installation
 
 ```bash
-npm install --save salak@next
+$ npm install --save salak@next
 ```
 
 Node.js > 7.6.0 required.
@@ -27,6 +27,7 @@ Node.js > 7.6.0 required.
 - ✔︎ Auto bind routes
 - ✔︎ Plugin system
 - ✔︎ Easy extends
+- ✔︎ Typescript supported
 
 ## Docs
 
