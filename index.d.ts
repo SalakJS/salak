@@ -1,6 +1,7 @@
 import * as KoaApplication from 'koa'
+import * as JoiObject from 'joi'
 import { Server } from 'http'
-import { Stream } from 'stream';
+import { Stream } from 'stream'
 
 declare class Salak extends KoaApplication {
   constructor (option?: { baseDir: string, opts?: { root?: string, app?: string, runtime?: string } })
@@ -98,13 +99,14 @@ declare namespace Salak {
   }
 
   export class Behavior extends Base {
-    Joi: PlainObject
     behavior (name: string, module?: string): Behavior
   }
 
   export class Service extends Base {}
   export class Schedule extends Base {}
   export class RestController extends Controller {}
+
+  export import Joi = JoiObject
 }
 
 export = Salak
