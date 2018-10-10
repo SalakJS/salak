@@ -1,3 +1,4 @@
+
 import * as KoaApplication from 'koa'
 import * as JoiObject from 'joi'
 import { Server } from 'http'
@@ -20,7 +21,7 @@ declare class Salak extends KoaApplication {
   setConfig (name: string, value: any, module?: string): void
   service (name: string, module?: string, ...args: any[]): any
 
-  curl (url: string, options?: Salak.CURL_OPTIONS): Promise<Salak.CURL_RESPONSE>
+  curl (url: string, options?: Salak.DeepPartial<Salak.CURL_OPTIONS>): Promise<Salak.CURL_RESPONSE>
   run (port?: number): Promise<Server>
 
   close (): Promise<any>
@@ -38,20 +39,24 @@ declare namespace Salak {
     error (msg: any, ...args: any[]): void
   }
 
+  export type DeepPartial<T> = {
+    [U in keyof T]?: T[U] extends object ? DeepPartial<T[U]> : T[U]
+  }
+
   type PlainObject <T = any> = { [prop: string]: T }
 
   interface CURL_OPTIONS {
-    method?: string
-    timeout?: number
-    body?: PlainObject
-    query?: PlainObject
-    headers?: PlainObject
-    contentType?: string
-    dataType?: string
-    retry?: number
-    redirects?: number
-    stream?: Stream
-    reqStream?: Stream
+    method: string
+    timeout: number
+    body: PlainObject
+    query: PlainObject
+    headers: PlainObject
+    contentType: string
+    dataType: string
+    retry: number
+    redirects: number
+    stream: Stream
+    reqStream: Stream
   }
 
   interface CURL_RESPONSE {
@@ -69,14 +74,14 @@ declare namespace Salak {
     root: string
     logger: logger
     helper: PlainObject
-    curl (url: string, options?: CURL_OPTIONS): Promise<CURL_RESPONSE>
+    curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
     config (key: string, module?: string): any
     service (name: string, module?: string, ...args: any[]): any
     throw (...args: any[]): void
   }
 
   export interface Context extends KoaApplication.Context {
-    curl (url: string, options?: CURL_OPTIONS): Promise<CURL_RESPONSE>
+    curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
   }
 
   class Middleware {
@@ -99,6 +104,7 @@ declare namespace Salak {
   }
 
   export class Behavior extends Base {
+    Joi: PlainObject
     behavior (name: string, module?: string): Behavior
   }
 
@@ -107,6 +113,139 @@ declare namespace Salak {
   export class RestController extends Controller {}
 
   export import Joi = JoiObject
+  interface BehaviorObjectType {
+    method: string|string[]
+    meta: {
+      summary: string
+      description: string
+      tags: string[]
+    },
+    validate: {
+      query: PlainObject<JoiObject.AnySchema>
+      body: PlainObject<JoiObject.AnySchema>
+      header: PlainObject<JoiObject.AnySchema>
+      params: PlainObject<JoiObject.AnySchema>
+      formData: PlainObject<JoiObject.AnySchema>
+      responses: {
+        [prop: string]: {
+          body: PlainObject<JoiObject.AnySchema>
+          headers: PlainObject<JoiObject.AnySchema>
+        }
+      }
+    }
+  }
+
+  export interface BehaviorObject extends DeepPartial<BehaviorObjectType> {}
+
+  export interface SalakConfig {
+    port: number
+    readyTimeout: number
+    schedule: {
+      enable: boolean
+      prefix: string
+      store: string
+      storeOptions: any
+    }
+    swagger: {
+      enable: boolean
+      apiDocs: string
+      apiJson: string
+      html: string
+      spec: {
+        info: {
+          title: string,
+          version: string
+          [prop: string]: any
+        }
+        [prop: string]: any
+      }
+    }
+    static: {
+      enable: boolean
+      root: string
+      opts: PlainObject
+    }
+    siteFile: {
+      [prop: string]: any
+    }
+    notFound: {
+      type: string
+      notFoundHtml: string
+      pageUrl: string
+    }
+    output: {
+      fields: {
+        code: string
+        data: string
+        msg: string
+        detail: string
+      }
+      type: {
+        code: string
+      }
+      errorHtmlFn: () => void
+    }
+    error: {
+      status: string | number
+      type: string
+    }
+    logger: {
+      root: string
+      injectConsole: boolean
+      formatType: string
+      fileType: string
+      capture: {
+        enable: boolean
+        category: string
+        level: string
+      }
+      defaultLevel: string
+      category: {
+        transports: string[]
+        level: string
+      }
+      categories: {
+        [prop: string]: {
+          transports: string[]
+          level: string
+        }
+      }
+      transports: {
+        [prop: string]: {
+          type: string
+          level: string
+          [prop: string]: any
+        }
+      }
+    }
+    bodyParser: {
+      encoding: string
+      formLimit: string
+      jsonLimit: string
+      strict: boolean
+      queryString: {
+        arrayLimit: number
+        depth: number
+        parameterLimit: number
+      }
+      enableTypes: string[]
+      extendTypes: {
+        json: string[]
+        form: string[]
+        text: string[]
+      }
+    }
+    bootstraps: Array<string|PlainObject>
+    routes: {
+      defaultRoute: string
+      defaultMethods: string | string[]
+      prefix: string
+      loadOrder: string[]
+      alias: string
+      replaceIndex: boolean
+    }
+    [prop: string]: any
+  }
 }
 
 export = Salak
