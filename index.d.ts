@@ -257,6 +257,14 @@ declare namespace Salak {
     }
     [prop: string]: any
   }
+
+  export interface ScheduleTimerObject {
+    enable?: boolean
+    interval?: number | string
+    type?: string // single、all、worker, default 'all'
+    cron?: string // use `cron-parser`
+    cronOptions?: PlainObject
+  }
 }
 
 export = Salak
