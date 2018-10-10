@@ -1,4 +1,3 @@
-
 import * as KoaApplication from 'koa'
 import * as JoiObject from 'joi'
 import { Server } from 'http'
@@ -37,6 +36,7 @@ declare namespace Salak {
     info (msg: any, ...args: any[]): void
     warn (msg: any, ...args: any[]): void
     error (msg: any, ...args: any[]): void
+    app: logger
   }
 
   export type DeepPartial<T> = {
@@ -100,7 +100,7 @@ declare namespace Salak {
     send (data: any, status?: number): void
     success (data: any, message?: string, code?: number): void
     failure (code: number, message?: string, data?: any): void
-    middleware (name: string|Function, module?: string, options?: any): Middleware
+    middleware (name: string | Function, module?: string, options?: any): Middleware
   }
 
   export class Behavior extends Base {
@@ -114,7 +114,7 @@ declare namespace Salak {
 
   export import Joi = JoiObject
   interface BehaviorObjectType {
-    method: string|string[]
+    method: string | string[]
     meta: {
       summary: string
       description: string
@@ -235,7 +235,7 @@ declare namespace Salak {
         text: string[]
       }
     }
-    bootstraps: Array<string|PlainObject>
+    bootstraps: Array<string | PlainObject>
     routes: {
       defaultRoute: string
       defaultMethods: string | string[]
@@ -243,6 +243,17 @@ declare namespace Salak {
       loadOrder: string[]
       alias: string
       replaceIndex: boolean
+    }
+    curl: {
+      timeout: string
+      headers: PlainObject
+      contentType: string
+      dataType: string
+      retry: number
+      redirects: number
+      beforeRequest: (req: PlainObject) => void
+      afterResponse: (err?: any, res?: any) => void
+      plugins: any[]
     }
     [prop: string]: any
   }
