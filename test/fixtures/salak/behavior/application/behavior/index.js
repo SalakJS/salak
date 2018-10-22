@@ -1,11 +1,11 @@
-const { Behavior } = require('../../../../../..')
+const { Behavior, Joi } = require('../../../../../..')
 
 class Index extends Behavior {
   actionIndex () {
     return {
       validate: {
         query: {
-          id: this.Joi.number().required()
+          id: Joi.number().required()
         }
       }
     }

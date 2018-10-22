@@ -22,10 +22,6 @@ class Index extends Controller {
     this.body = this.header.app
   }
 
-  async actionUserAgent () {
-    this.body = this.userAgent
-  }
-
   async actionQuery () {
     this.body = this.query.name
   }

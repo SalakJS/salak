@@ -1,5 +1,7 @@
+const { Joi } = require('../../../../../..')
+
 module.exports = {
   get isNumber () {
-    return this.Joi.number().required()
+    return Joi.number().required()
   }
 }

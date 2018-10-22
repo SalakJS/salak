@@ -20,14 +20,6 @@ describe('test/core/controller.js', () => {
     })
   })
 
-  describe('controller.userAgent', () => {
-    it('should return user-agent', async () => {
-      const res = await request(callback).get('/userAgent').expect(200)
-
-      expect(res.text).toMatch(/node-superagent/)
-    })
-  })
-
   describe('controller.query', () => {
     it('should return query data', async () => {
       const res = await request(callback).get('/query?name=salak').expect(200)
