@@ -92,7 +92,6 @@ declare namespace Salak {
   export class Controller extends Base {
     ctx: Context
     header: PlainObject
-    userAgent: string
     query: PlainObject
     status: number
     body: any
@@ -104,7 +103,6 @@ declare namespace Salak {
   }
 
   export class Behavior extends Base {
-    Joi: PlainObject
     behavior (name: string, module?: string): Behavior
   }
 
