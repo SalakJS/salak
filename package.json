@@ -1,6 +1,6 @@
 {
   "name": "salak",
-  "version": "2.0.0-beta.27",
+  "version": "2.0.0-beta.28",
   "description": "A framework base on koa.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "test-cov": "jest --coverage"
   },
   "dependencies": {
-    "@types/joi": "^13.6.0",
+    "@types/joi": "^14.0.0",
     "@types/koa": "^2.0.46",
     "debug": "^4.0.1",
     "extend": "^3.0.2",

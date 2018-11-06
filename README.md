@@ -7,6 +7,7 @@
   <a href="https://travis-ci.org/SalakJS/salak"><img src="https://img.shields.io/travis/SalakJS/salak.svg?style=flat-square" alt="Build Status"></a>
   <a href="https://codecov.io/github/salakjs/salak?branch=master"><img src="https://img.shields.io/codecov/c/github/salakjs/salak.svg?style=flat-square" alt="Coverage Status"></a>
   <a href="https://npmjs.org/package/salak"><img src="https://img.shields.io/npm/dm/salak.svg?style=flat-square" alt="Downloads"></a>
+  <a href="https://david-dm.org/SalakJS/salak"><img src="https://img.shields.io/david/SalakJS/salak.svg?style=flat-square" alt="David deps"></a>
   <a href="https://github.com/SalakJS/salak"><img src="https://img.shields.io/github/license/SalakJS/salak.svg?style=flat-square" alt="License"></a>
 </p>
 
