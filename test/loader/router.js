@@ -73,4 +73,30 @@ describe('test/loader/router.js', () => {
       })
     })
   })
+
+  describe('test `ctx.routeInfo`', () => {
+    let app
+    let callback
+    beforeAll(async () => {
+      app = tools.createApp('loader-router-routeInfo')
+      callback = await app.callback()
+    })
+
+    afterAll(async () => {
+      await app.close()
+    })
+
+    describe('set `ctx.routeInfo`', () => {
+      it('should return `{ module: "application", controller: "index", action: "actionIndex", key: "index" }`', async () => {
+        const res = await request(callback).get('/').expect(200)
+
+        expect(res.body).toEqual({
+          module: 'application',
+          controller: 'index',
+          action: 'actionIndex',
+          key: 'index'
+        })
+      })
+    })
+  })
 })
