@@ -3,7 +3,8 @@ import * as JoiObject from 'joi'
 import { Server } from 'http'
 import { Stream } from 'stream'
 
-declare class Salak extends KoaApplication {
+interface Salak extends KoaApplication, Salak.IService {}
+declare class Salak {
   constructor (option?: { baseDir: string, opts?: { root?: string, app?: string, runtime?: string } })
   version: string
   root: string
@@ -18,7 +19,6 @@ declare class Salak extends KoaApplication {
 
   config (key: string, module?: string): any
   setConfig (name: string, value: any, module?: string): void
-  service (name: string, module?: string, ...args: any[]): any
 
   curl (url: string, options?: Salak.DeepPartial<Salak.CURL_OPTIONS>): Promise<Salak.CURL_RESPONSE>
   run (port?: number): Promise<Server>
@@ -66,8 +66,12 @@ declare namespace Salak {
     headers: any
   }
 
-  export class Base {
-    constructor (app: string, module: string)
+  export class IService {
+    service (name: string, module?: string, ...args: any[]): any
+  }
+
+  export class Base extends IService {
+    constructor (app: Salak, module: string)
 
     module: string
     app: Salak
@@ -76,7 +80,6 @@ declare namespace Salak {
     helper: PlainObject
     curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
     config (key: string, module?: string): any
-    service (name: string, module?: string, ...args: any[]): any
     throw (...args: any[]): void
   }
 
@@ -134,6 +137,11 @@ declare namespace Salak {
   }
 
   export interface BehaviorObject extends DeepPartial<BehaviorObjectType> {}
+
+  type MiddlewareOrPluginObject = {
+    name: string
+    package: any
+  }
 
   export interface SalakConfig {
     port: number
@@ -215,6 +223,11 @@ declare namespace Salak {
           [prop: string]: any
         }
       }
+      transportsDefaultOptions: {
+        [prop: string]: {
+          [prop: string]: any
+        }
+      }
     }
     bodyParser: {
       encoding: string
@@ -253,6 +266,8 @@ declare namespace Salak {
       afterResponse: (err?: any, res?: any) => void
       plugins: any[]
     }
+    middleware: Array<string | MiddlewareOrPluginObject>
+    plugin: Array<MiddlewareOrPluginObject>
     [prop: string]: any
   }
 
