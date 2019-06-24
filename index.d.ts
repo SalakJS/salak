@@ -80,7 +80,7 @@ declare namespace Salak {
     helper: PlainObject
     curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
     config (key: string, module?: string): any
-    throw (...args: any[]): void
+    throw (...args: any[]): never
   }
 
   export interface Context extends KoaApplication.Context {
