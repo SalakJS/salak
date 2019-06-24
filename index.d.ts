@@ -13,6 +13,7 @@ declare class Salak {
   runtime: string
   loader: any
   logger: Salak.logger
+  helper: Salak.helper
 
   callback (): Promise<Server> | any
   listen (...args: any[]): Promise<Server> | any
@@ -29,7 +30,7 @@ declare class Salak {
 }
 
 declare namespace Salak {
-  export interface logger {
+  interface logger {
     silly (msg: any, ...args: any[]): void
     debug (msg: any, ...args: any[]): void
     verbose (msg: any, ...args: any[]): void
@@ -39,7 +40,7 @@ declare namespace Salak {
     app: logger
   }
 
-  export type DeepPartial<T> = {
+  type DeepPartial<T> = {
     [U in keyof T]?: T[U] extends object ? DeepPartial<T[U]> : T[U]
   }
 
@@ -66,24 +67,26 @@ declare namespace Salak {
     headers: any
   }
 
-  export class IService {
+  interface helper {}
+
+  class IService {
     service (name: string, module?: string, ...args: any[]): any
   }
 
-  export class Base extends IService {
+  class Base extends IService {
     constructor (app: Salak, module: string)
 
     module: string
     app: Salak
     root: string
     logger: logger
-    helper: PlainObject
+    helper: helper
     curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
     config (key: string, module?: string): any
     throw (...args: any[]): never
   }
 
-  export interface Context extends KoaApplication.Context {
+  interface Context extends KoaApplication.Context {
     curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
   }
 
@@ -136,14 +139,14 @@ declare namespace Salak {
     }
   }
 
-  export interface BehaviorObject extends DeepPartial<BehaviorObjectType> {}
+  interface BehaviorObject extends DeepPartial<BehaviorObjectType> {}
 
   type MiddlewareOrPluginObject = {
     name: string
     package: any
   }
 
-  export interface SalakConfig {
+  interface SalakConfig {
     port: number
     readyTimeout: number
     schedule: {
@@ -271,7 +274,7 @@ declare namespace Salak {
     [prop: string]: any
   }
 
-  export interface ScheduleTimerObject {
+  interface ScheduleTimerObject {
     enable?: boolean
     interval?: number | string
     type?: string // single、all、worker, default 'all'
