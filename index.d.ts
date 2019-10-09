@@ -12,8 +12,8 @@ declare class Salak {
   appDir: string
   runtime: string
   loader: any
-  logger: Salak.logger
-  helper: Salak.helper
+  logger: Salak.Logger
+  helper: Salak.Helper
 
   callback (): Promise<Server> | any
   listen (...args: any[]): Promise<Server> | any
@@ -37,8 +37,10 @@ declare namespace Salak {
     info (msg: any, ...args: any[]): void
     warn (msg: any, ...args: any[]): void
     error (msg: any, ...args: any[]): void
-    app: logger
+    app: Logger
   }
+
+  interface Logger extends logger {}
 
   type DeepPartial<T> = {
     [U in keyof T]?: T[U] extends object ? DeepPartial<T[U]> : T[U]
@@ -68,6 +70,7 @@ declare namespace Salak {
   }
 
   interface helper {}
+  interface Helper extends helper {}
 
   class IService {
     service (name: string, module?: string, ...args: any[]): any
@@ -79,8 +82,8 @@ declare namespace Salak {
     module: string
     app: Salak
     root: string
-    logger: logger
-    helper: helper
+    logger: Logger
+    helper: Helper
     curl (url: string, options?: DeepPartial<CURL_OPTIONS>): Promise<CURL_RESPONSE>
     config (key: string, module?: string): any
     throw (...args: any[]): never
