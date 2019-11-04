@@ -31,12 +31,12 @@ declare class Salak {
 
 declare namespace Salak {
   interface logger {
-    silly (msg: any, ...args: any[]): void
-    debug (msg: any, ...args: any[]): void
-    verbose (msg: any, ...args: any[]): void
-    info (msg: any, ...args: any[]): void
-    warn (msg: any, ...args: any[]): void
-    error (msg: any, ...args: any[]): void
+    silly (msg: any, ...args: any[]): void,
+    debug (msg: any, ...args: any[]): void,
+    verbose (msg: any, ...args: any[]): void,
+    info (msg: any, ...args: any[]): void,
+    warn (msg: any, ...args: any[]): void,
+    error (msg: any, ...args: any[]): void,
     app: Logger
   }
 
@@ -49,23 +49,23 @@ declare namespace Salak {
   type PlainObject <T = any> = { [prop: string]: T }
 
   interface CURL_OPTIONS {
-    method: string
-    timeout: number
-    body: PlainObject
-    query: PlainObject
-    headers: PlainObject
-    contentType: string
-    dataType: string
-    retry: number
-    redirects: number
-    stream: Stream
+    method: string,
+    timeout: number,
+    body: PlainObject,
+    query: PlainObject,
+    headers: PlainObject,
+    contentType: string,
+    dataType: string,
+    retry: number,
+    redirects: number,
+    stream: Stream,
     reqStream: Stream
   }
 
   interface CURL_RESPONSE {
-    status: number
-    data: any
-    err: any
+    status: number,
+    data: any,
+    err: any,
     headers: any
   }
 
@@ -121,21 +121,21 @@ declare namespace Salak {
 
   export import Joi = JoiObject
   interface BehaviorObjectType {
-    method: string | string[]
+    method: string | string[],
     meta: {
-      summary: string
-      description: string
+      summary: string,
+      description: string,
       tags: string[]
     },
     validate: {
-      query: PlainObject<JoiObject.AnySchema>
-      body: PlainObject<JoiObject.AnySchema>
-      header: PlainObject<JoiObject.AnySchema>
-      params: PlainObject<JoiObject.AnySchema>
-      formData: PlainObject<JoiObject.AnySchema>
+      query: PlainObject<JoiObject.AnySchema>,
+      body: PlainObject<JoiObject.AnySchema>,
+      header: PlainObject<JoiObject.AnySchema>,
+      params: PlainObject<JoiObject.AnySchema>,
+      formData: PlainObject<JoiObject.AnySchema>,
       responses: {
         [prop: string]: {
-          body: PlainObject<JoiObject.AnySchema>
+          body: PlainObject<JoiObject.AnySchema>,
           headers: PlainObject<JoiObject.AnySchema>
         }
       }
@@ -145,145 +145,164 @@ declare namespace Salak {
   interface BehaviorObject extends DeepPartial<BehaviorObjectType> {}
 
   type MiddlewareOrPluginObject = {
-    name: string
+    name: string,
     package: any
   }
 
-  interface SalakConfig {
-    port: number
-    readyTimeout: number
-    schedule: {
-      enable: boolean
-      prefix: string
-      store: string
-      storeOptions: any
+  type MiddlewareConfig = {
+    enable: boolean,
+    match: string | string [] | RegExp | Function,
+    ignore: string | string [] | RegExp | Function
+  }
+
+  interface Static extends MiddlewareConfig {
+    root: string,
+    opts: PlainObject
+  }
+
+  interface NotFound extends MiddlewareConfig {
+    type: string,
+    notFoundHtml: string,
+    pageUrl: string
+  }
+
+  interface SiteFile extends MiddlewareConfig {
+    [prop: string]: any
+  }
+
+  interface ErrorMidddleware extends MiddlewareConfig {
+    status: string | number,
+    type: string
+  }
+
+  interface BodyParser extends MiddlewareConfig {
+    encoding: string,
+    formLimit: string,
+    jsonLimit: string,
+    strict: boolean,
+    queryString: {
+      arrayLimit: number,
+      depth: number,
+      parameterLimit: number
+    },
+    enableTypes: string[],
+    extendTypes: {
+      json: string[],
+      form: string[],
+      text: string[]
     }
+  }
+
+  interface SalakConfig {
+    port: number,
+    readyTimeout: number,
+    schedule: {
+      enable: boolean,
+      prefix: string,
+      store: string,
+      storeOptions: any
+    },
     swagger: {
-      enable: boolean
-      apiDocs: string
-      apiJson: string
-      html: string
+      enable: boolean,
+      apiDocs: string,
+      apiJson: string,
+      html: string,
       spec: {
         info: {
           title: string,
-          version: string
+          version: string,
           [prop: string]: any
-        }
+        },
         [prop: string]: any
       }
-    }
-    static: {
-      enable: boolean
-      root: string
-      opts: PlainObject
-    }
-    siteFile: {
-      [prop: string]: any
-    }
-    notFound: {
-      type: string
-      notFoundHtml: string
-      pageUrl: string
-    }
+    },
+    static: Static,
+    siteFile: SiteFile,
+    notFound: NotFound,
     output: {
       fields: {
-        code: string
-        data: string
-        msg: string
+        code: string,
+        data: string,
+        msg: string,
         detail: string
-      }
+      },
       type: {
         code: string
       }
       errorHtmlFn: () => void
-    }
-    error: {
-      status: string | number
-      type: string
-    }
+    },
+    error: ErrorMidddleware,
     logger: {
-      root: string
-      injectConsole: boolean
-      formatType: string
-      fileType: string
+      root: string,
+      injectConsole: boolean,
+      formatType: string,
+      fileType: string,
       capture: {
-        enable: boolean
-        category: string
+        enable: boolean,
+        category: string,
         level: string
-      }
-      defaultLevel: string
+      },
+      defaultLevel: string,
       category: {
-        transports: string[]
+        transports: string[],
         level: string
-      }
+      },
       categories: {
         [prop: string]: {
-          transports: string[]
+          transports: string[],
           level: string
         }
-      }
+      },
       transports: {
         [prop: string]: {
-          type: string
-          level: string
+          type: string,
+          level: string,
           [prop: string]: any
         }
-      }
+      },
       transportsDefaultOptions: {
         [prop: string]: {
           [prop: string]: any
         }
       }
-    }
-    bodyParser: {
-      encoding: string
-      formLimit: string
-      jsonLimit: string
-      strict: boolean
-      queryString: {
-        arrayLimit: number
-        depth: number
-        parameterLimit: number
-      }
-      enableTypes: string[]
-      extendTypes: {
-        json: string[]
-        form: string[]
-        text: string[]
-      }
-    }
-    bootstraps: Array<string | PlainObject>
+    },
+    bodyParser: BodyParser,
+    bootstraps: Array<string | PlainObject>,
     routes: {
-      defaultRoute: string
-      defaultMethods: string | string[]
-      prefix: string
-      loadOrder: string[]
-      alias: string
+      defaultRoute: string,
+      defaultMethods: string | string[],
+      prefix: string,
+      loadOrder: string[],
+      alias: string,
       replaceIndex: boolean
-    }
+    },
     curl: {
-      timeout: string
-      headers: PlainObject
-      contentType: string
-      dataType: string
-      retry: number
-      redirects: number
-      beforeRequest: (req: PlainObject) => void
-      afterResponse: (err?: any, res?: any) => void
+      timeout: string,
+      headers: PlainObject,
+      contentType: string,
+      dataType: string,
+      retry: number,
+      redirects: number,
+      beforeRequest: (req: PlainObject) => void,
+      afterResponse: (err?: any, res?: any) => void,
       plugins: any[]
-    }
-    middleware: Array<string | MiddlewareOrPluginObject>
-    plugin: Array<MiddlewareOrPluginObject>
+    },
+    middleware: Array<string | MiddlewareOrPluginObject>,
+    plugin: Array<MiddlewareOrPluginObject>,
     [prop: string]: any
   }
 
   interface ScheduleTimerObject {
-    enable?: boolean
-    interval?: number | string
-    type?: string // single、all、worker, default 'all'
-    cron?: string // use `cron-parser`
+    enable?: boolean,
+    interval?: number | string,
+    type?: string, // single、all、worker, default 'all'
+    cron?: string, // use `cron-parser`
     cronOptions?: PlainObject
   }
+
+  // export { Salak }
+  class OriginSalak extends Salak {}
+  export interface Salak extends OriginSalak {}
 }
 
 export = Salak
