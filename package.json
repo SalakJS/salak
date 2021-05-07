@@ -1,6 +1,6 @@
 {
   "name": "salak",
-  "version": "2.0.0-beta.40",
+  "version": "2.0.0-beta.41",
   "description": "A framework base on koa.",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "koa-compose": "^4.1.0",
     "koa-static": "^5.0.0",
     "path-to-regexp": "^2.4.0",
-    "salak-curl": "^1.0.3",
+    "salak-curl": "^1.0.4",
     "salak-logger": "^1.0.4",
     "salak-router": "^1.0.8",
     "salak-schedule": "^2.0.0-beta.3",
